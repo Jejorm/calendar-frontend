@@ -35,11 +35,7 @@ export const useAuthStore = () => {
 
         try {
 
-            console.log( { name, email, password } )
-
             const { data } = await calendarApi.post( '/auth/new', { name, email, password } )
-
-            console.log( '7es' )
 
             localStorage.setItem( 'token', data.token )
             localStorage.setItem( 'token-init-date', new Date().getTime() )
@@ -47,8 +43,6 @@ export const useAuthStore = () => {
             dispatch( onLogin( { name: data.name, uid: data.uid } ) )
 
         } catch ( error ) {
-
-            console.log( error )
 
             dispatch( onLogout( error.response.data.msg ) )
 
